@@ -26,18 +26,29 @@ public class HandBagTest {
     }
 
     @Test(timeout = 50)
+    public void testSetColor1() {
+        b.setColor("White");
+        assertEquals("White", b.getColor());
+    }
+
+    @Test(timeout = 50)
     public void testGetNumberOfContentsEmpty() {
         assertEquals(0, b.getNumberOfContents());
     }
 
     @Test(timeout = 50)
     public void testGetNumberOfContentsNonEmpty() {
-        b.addItem("Cheese");
-        b.addItem("Eggs");
+        assertTrue(b.addItem("Cheese"));
+        assertTrue(b.addItem("Eggs"));
         assertEquals(2, b.getNumberOfContents());
+        assertTrue(b.addItem("Bacon"));
+        assertTrue(b.addItem("Coffee"));
+        assertEquals(4, b.getNumberOfContents());
+        assertFalse(b.addItem("Bread"));
+        assertEquals(4, b.getNumberOfContents());
     }
 
-    @Test(timeout = 50)
+    @Test(timeout = 10000)
     public void testGetNumberOfContentsPop() {
         b.addItem("Cheese");
         b.addItem("Eggs");
@@ -58,14 +69,18 @@ public class HandBagTest {
 
     @Test(timeout = 50)
     public void TestIncreaseCapacity() {
+        assertEquals("Blue Bag (0 / 4)", b.toString());
         b.increaseCapacity(2);
         assertEquals(6, b.getCapacity());
+        assertEquals("Blue Bag (0 / 6)", b.toString());
     }
 
     @Test(timeout = 50)
     public void TestEnhance() {
         b.enhance();
         assertEquals(5, b.getCapacity());
+        b.enhance();
+        assertEquals(6, b.getCapacity());
     }
 
 }

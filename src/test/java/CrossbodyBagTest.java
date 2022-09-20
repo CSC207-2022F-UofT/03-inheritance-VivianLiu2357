@@ -30,11 +30,15 @@ public class CrossbodyBagTest {
     public void TestEnhance() {
         b.enhance();
         assertEquals(6, b.getCapacity());
+        b.enhance();
+        assertEquals(8, b.getCapacity());
     }
 
     @Test(timeout = 50)
     public void TestToString() {
         assertEquals("Blue Crossbody Bag with 2 straps (0 / 4)", b.toString());
+        b.addItem("Phone");
+        assertEquals("Blue Crossbody Bag with 2 straps (1 / 4)", b.toString());
     }
 
 }

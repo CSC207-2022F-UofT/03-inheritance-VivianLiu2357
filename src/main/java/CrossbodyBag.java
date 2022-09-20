@@ -30,3 +30,45 @@
  *
  *       See the tests in test/CrossBodyBagTest.java for examples.
  */
+public class CrossbodyBag extends Bag {
+
+    /**
+     * Creates a new CrossbodyBag with the given color,
+     * capacity, and number of straps.
+     */
+    private int numberOfStraps;
+    private String[] contents;
+
+    public CrossbodyBag(String color, int capacity, int numStrap) {
+        super(color, capacity);
+        numberOfStraps = numStrap;
+        contents = new String[capacity];
+    }
+
+    public int getNumberOfStraps(){
+        return this.numberOfStraps;
+    }
+
+    /**
+     * Increase the capacity of this bag by 2.
+     */
+    @Override
+    public void enhance() {
+        super.increaseCapacity(2);
+    }
+
+    /**
+     * The toString method overridden to return a string in the
+     *  same form as Bag's toString but with the original "Bag" part
+     *  of the string replaced by:
+     *  Crossbody Bag with {numberOfStraps} straps
+     */
+    @Override
+    public String toString(){
+        return super.getColor() + " Crossbody Bag with " + this.numberOfStraps + " straps (" +
+                super.getNumberOfContents() + " / " + super.getCapacity() + ")";
+        // we need to use super because the method is from the parent class and the parameter is not 'local'
+    }
+
+}
+
